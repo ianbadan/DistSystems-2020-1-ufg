@@ -8,7 +8,7 @@ O arquivo constRPYC.py é o arquivo que está o IP e porta do diretório do serv
 Arquivos para a implementação do trabalho, para o funcionamento do mesmo é necessário rodar cada implementação(client.py, server.py e serverDirectory.py) em uma instância diferente do AWS e ajustar o arquivo de constRPYC.py, ajusta o DIR_SERVER para o ip da máquina que será o diretório do servidor, um futuro ajuste é adaptar o codigo do serverDirectory para que sempre que programa seja executado, ele pegue o ip da maquina atual e guarde nesse arquivo automaticamente, para que não seja necessário ficar alterando caso a maquina do diretório mude.
 
 Melhorias foram implementadas no Servidor de Diretório para:
-a) Registrar novamente um nome já existente;
+a) Não registrar novamente um nome já existente; (sei que na atividade pedia para registrar, mas como mesmo disse em aula, ele já faz isso, ou queria que registrasse somente pelo mesmo servidor que ja registrou? Ficou um tanto quanto vago o que era pra ser feito)
 b) Evitar o lookup de nomes não existentes;
 c) Remover o registro de um nome existente.
 
