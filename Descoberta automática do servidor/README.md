@@ -1,5 +1,5 @@
 # Servidor de diretórios para descoberta automática de servidor <h1>
-É possivel rodar esses testes tem uma maquina local, basta colocar o IP local dentro do arquivo ConstRPYC.py, mas a ideia central é utilizar como um sistema distribuído e para isso, foi utilizado o AWS e três máquinas EC2 t2.micro, uma máquina será para o servidor de diretórios, a outra máquina será um cliente e por fim, a terceira máquina será um servidor.
+É possivel rodar esses testes tem uma maquina local, basta colocar o IP local dentro do arquivo ConstRPYC.py, mas a ideia central é utilizar como um sistema distribuído e para isso, foi utilizado o AWS e três máquinas EC2 t2.micro, uma máquina será para o servidor de diretórios, a outra máquina será um cliente e a terceira máquina será um servidor.
 
 Os arquivos que devem estar dentro de cada máquina são os seguintes:
 
