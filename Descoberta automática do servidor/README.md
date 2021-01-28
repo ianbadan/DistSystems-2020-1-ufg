@@ -1,18 +1,38 @@
-O client.py consiste na implementação do cliente que fará as requisições, primeiramente será feita a chamada para o diretorio do servidor, para descobrir o endereço e porta e depois fara a requisição para o servidor.
+# Servidor de diretórios para descoberta automática de servidor <h1>
+É possivel rodar esses testes tem uma maquina local, basta colocar o IP local dentro do arquivo ConstRPYC.py, mas a ideia central é utilizar como um sistema distribuído e para isso, foi utilizado o AWS e três máquinas EC2 t2.micro, uma máquina será para o servidor de diretórios, a outra máquina será um cliente e por fim, a terceira máquina será um servidor.
 
-O server.py é a implementação do servidor, que vai rodar esperando as requisições do cliente, mas antes vai mandar para o diretório o seu ip e porta do momento.
+Os arquivos que devem estar dentro de cada máquina são os seguintes:
 
-Já o serverDirectory.py é o diretório do servidor onde será guardados os IPs e portas do servidores para que os clientes possam usar para descobrir os servidores e mandar mensagem para aquele que está procurando.
+* Servidor de diretórios: serverDirectory.py e constRPYC.py
 
-O arquivo constRPYC.py é o arquivo que está o IP e porta do diretório do servidor.
-Arquivos para a implementação do trabalho, para o funcionamento do mesmo é necessário rodar cada implementação(client.py, server.py e serverDirectory.py) em uma instância diferente do AWS e ajustar o arquivo de constRPYC.py, ajusta o DIR_SERVER para o ip da máquina que será o diretório do servidor, um futuro ajuste é adaptar o codigo do serverDirectory para que sempre que programa seja executado, ele pegue o ip da maquina atual e guarde nesse arquivo automaticamente, para que não seja necessário ficar alterando caso a maquina do diretório mude.
+* Cliente: client.py e constRPYC.py
 
-Melhorias foram implementadas no Servidor de Diretório para:
+* Servidor: server.py e constRPYC.py
 
-a) Não registrar novamente um nome já existente; (sei que na atividade pedia para registrar, mas como mesmo disse em aula, ele já faz isso, ou queria que registrasse somente pelo mesmo servidor que ja registrou? Ficou um tanto quanto vago o que era pra ser feito)
+Note que o arquivo constRPYC.py está presente em todas as máquinas, pois se presume que um servidor de diretório é amplamente conhecido pelo clientes e servidores, por isso que o arquivo deve estar no presente tanto no cliente, quanto no servidor. Esse arquivo deve conter o IP e Porta de conexão do servidor de diretórios, se estiver utilizando de forma distribuída, deve ser o IP da máquina utilizada para o servidor de diretório no AWS ou na plataforma de sua preferência, caso tenha feito no AWS, é necessario ajustar os grupos de segurança para permiter a comunicação entre as máquinas na porta determinada.
 
-b) Evitar o lookup de nomes não existentes;
+## O que cada código faz <h2>
 
-c) Remover o registro de um nome existente.
+* O serverDirectory.py é o servidor de diretórios onde serão guardados os IPs e portas do servidores, para assim que os clientes possam descobrir os servidores que estão buscando e realizar a conexão e comunicação entre cliente e servidor.
+
+* O client.py consiste na implementação do cliente que fará as requisições, primeiramente será feita a chamada para o diretorio do servidor, para descobrir o endereço e porta e depois fara a requisição para o servidor.
+
+* O server.py é a implementação do servidor, primeiro irá mandar para o diretório o seu ip e porta do momento e então esperá as requisições do cliente, para assim poder responder.
+
+## Como utilizar <h2>
+
+Para o funcionamento desse sistema é necessário rodar cada implementação(client.py, server.py e serverDirectory.py) em uma instância diferente do AWS e ajustar o arquivo de constRPYC.py, alterando o DIR_SERVER para o ip da máquina do servidor de diretorios e o DIR_PORT para o porta que será utlizada. 
+
+Um futuro ajuste é adaptar o codigo do serverDirectory para que sempre que programa seja executado, ele pegue o ip da maquina atual e guarde nesse arquivo automaticamente, para que não seja necessário ficar alterando caso a maquina do diretório mude.
+
+## Melhorias <h2>
+
+Algumas melhorias foram implementadas no Servidor de Diretório para a segunda parte do trabalho, são elas:
+
+* Não registrar novamente um nome já existente; 
+
+* Evitar o lookup de nomes não existentes;
+
+* Remover o registro de um nome existente.
 
 E foram acrescentadas novas funcionalidades ao servidor da aplicação para excluir e consultar elementos da lista.
